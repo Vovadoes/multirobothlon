@@ -72,6 +72,7 @@ def calculateAngleAndPower(*args):
     print(x1, y1)
     R_target_x_m = round(x1, 6)
     R_target_y_m = round(y1, 6)
+    del x1, y1
     # D point finish
     # E point start
     R_2_target_x_m = round((target_x_m + R_target_x_m) / 2, 6)
@@ -100,6 +101,10 @@ def calculateAngleAndPower(*args):
         raise ValueError("-180 <= current_heading >= 180")
 
     print(x, y)
+
+    R_current_x_m = x
+    R_current_y_m = y
+    del x, y
 
     # B point finish
 
