@@ -35,6 +35,10 @@ def C_to_rad(c: float):
     return c * math.pi / 180
 
 
+def distance(a:tuple[float, float], b:tuple[float, float]):
+    return math.hypot(b[0] - a[0], b[1] - a[1])
+
+
 def calculateAngleAndPower(*args):
     if not args:
         return None
@@ -107,6 +111,23 @@ def calculateAngleAndPower(*args):
     del x, y
 
     # B point finish
+
+    # C point start
+
+    C_point_x_m = round((R_target_x_m + R_current_x_m) / 2, 6)
+    C_point_y_m = round((R_target_y_m + R_current_y_m) / 2, 6)
+
+    # C point finish
+
+    # вычисление угла между current_heading и курсом который нам нужен
+
+    D_BC = distance((R_current_x_m, R_current_y_m), (C_point_x_m, C_point_y_m))
+    print(f"{D_BC=}")
+    D_AC = distance((current_x_m, current_y_m), (C_point_x_m, C_point_y_m))
+    print(f"{D_AC=}")
+
+
+
 
     """Calculation of steering direction and engine power.
     # Args
