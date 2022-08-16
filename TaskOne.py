@@ -38,7 +38,7 @@ def volume_tetrahedron(x1: float, x2: float, x3: float, x4: float, y1: float, y2
     return abs(v)
 
 
-def volume(lst: list[tuple[int, int, int], tuple[int, int, int], tuple[int, int, int]]) -> float:
+def volume(lst: list[tuple[int, int, int], tuple[int, int, int], tuple[int, int, int]]) -> tuple[float, float]:
     coords_min_height = min(lst, key=lambda x: x[2])
     min_height = coords_min_height[2]
     print(f"{min_height=}")
@@ -80,7 +80,7 @@ def volume(lst: list[tuple[int, int, int], tuple[int, int, int], tuple[int, int,
     v3 = volume_tetrahedron(x1, x5, x3, x4, y1, y5, y3, y4, z1, z5, z3, z4)
     print(f"{v3=}")
 
-    return v1+v2+v3
+    return s1, v1+v2+v3
 
 
 print(volume([(0, 0, 3), (0, 4, 4), (3, 0, 5)]))
