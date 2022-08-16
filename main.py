@@ -22,6 +22,8 @@ def imageProcessing(img, input_shape):
 R_target = 2  # СИ
 R_2_target = R_target / 2  # СИ
 R_current = 2  # СИ
+R_E = 1
+R_C = 1
 
 
 def get_lat_lot_to_m(lat, lot):
@@ -35,7 +37,7 @@ def C_to_rad(c: float):
     return c * math.pi / 180
 
 
-def distance(a:tuple[float, float], b:tuple[float, float]):
+def distance(a: tuple[float, float], b: tuple[float, float]):
     return math.hypot(b[0] - a[0], b[1] - a[1])
 
 
@@ -126,9 +128,16 @@ def calculateAngleAndPower(*args):
     D_AC = distance((current_x_m, current_y_m), (C_point_x_m, C_point_y_m))
     print(f"{D_AC=}")
 
+    delta = math.acos((D_AC ** 2 + R_current ** 2 - D_BC ** 2) / (
+                2 * D_AC * R_current))  # перевести радианы в градусы
 
-
-
+    print(delta)
+    # if delta == 0:
+    #     return 0, 0
+    # elif delta > 0:
+    #     return 1, 35
+    # else:
+    #     return 1, -35
     """Calculation of steering direction and engine power.
     # Args
        target: a tuple of (type_target, target_bearing, angle_of_target, distance_to_target) OR None
