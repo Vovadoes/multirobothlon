@@ -54,6 +54,7 @@ def volume(lst: list[tuple[int, int, int], tuple[int, int, int], tuple[int, int,
     a = distance(coords_min_height, coords_medium_height)
     b = distance(coords_medium_height, coords_max_height)
     c = distance(coords_max_height, coords_min_height)
+
     p = (a + b + c) / 2
     s1 = math.sqrt(p * (p - a) * (p - b) * (p - c))
     v1 = s1 * min_height
@@ -83,5 +84,5 @@ def volume(lst: list[tuple[int, int, int], tuple[int, int, int], tuple[int, int,
     return s1, v1+v2+v3
 
 
-print(volume([(0, 0, 3), (0, 4, 4), (3, 0, 5)]))
+# print(volume([(0, 0, 3), (0, 4, 4), (3, 0, 5)]))
 # print(volume_tetrahedron(0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1))
