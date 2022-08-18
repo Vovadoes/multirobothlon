@@ -75,10 +75,10 @@ def calculateAngleAndPower(
 
             # angle_of_target_sever = angle_of_target + current_heading
 
-        x = math.sin(angle_of_target + target_bearing) * distance_target_to_current
-        y = math.cos(angle_of_target + target_bearing) * distance_target_to_current
+        x = math.sin(C_to_rad(angle_of_target + target_bearing)) * distance_target_to_current
+        y = math.cos(C_to_rad(angle_of_target + target_bearing)) * distance_target_to_current
 
-        angle = math.atan(x / (y - R_target)) - angle_of_target - target_bearing
+        angle = Rad_to_c(math.atan(x / (y - R_target))) - angle_of_target - target_bearing
 
         angle = course_regulator.calculateAngle(0, angle)
         old_target = {"bearing_heading": target_bearing + current_heading,
