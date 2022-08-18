@@ -51,6 +51,8 @@ def calculateAngleAndPower(
 
     global old_target
 
+    power = 0.5
+
     distance_target_to_current = distance(current_coordinates, target_coordinates)
 
     R_target = distance_target_to_current / 2
@@ -67,6 +69,7 @@ def calculateAngleAndPower(
         if old_target:
             target_bearing = old_target["bearing_heading"] - current_heading
             angle_of_target = old_target["angle_of_target"]
+            type_target = old_target["type_target"]
         else:
             type_target, target_bearing, angle_of_target, distance_to_target = target
 
@@ -79,7 +82,15 @@ def calculateAngleAndPower(
 
         angle = course_regulator.calculateAngle(0, angle)
         old_target = {"bearing_heading": target_bearing + current_heading,
-                      "angle_of_target": angle_of_target}
+                      "angle_of_target": angle_of_target,
+                      "type_target": type_target}
+        if type_target:
+            a1 = -1  # м/с ускорение
+            dis = (-(current_speed ** 2)) / (2 * a1)
+            if distance_target_to_current < dis:
+                power = -1
+            else:
+                power = 1
 
     # target_course = find_current_degree(x1, y1, *current_coordinates) - current_heading
 
@@ -97,7 +108,6 @@ def calculateAngleAndPower(
         angle: угол мотора в градусах от -35 до 35
         power: мощность двигателя от -1 до 1
     """
-    power = 0.5
 
     return angle, power
 
